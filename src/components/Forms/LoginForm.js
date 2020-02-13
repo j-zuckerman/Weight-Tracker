@@ -2,12 +2,11 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import { baseUrl } from '../../api/baseURL';
 
-export const RegisterForm = () => {
+export const LoginForm = ({ handleToken }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-
-  const baseUrl = 'http://localhost:3001/api';
 
   const handleUsername = e => {
     setUsername(e.target.value);
@@ -20,12 +19,12 @@ export const RegisterForm = () => {
 
     //Call to API register endpoint
     axios
-      .post(baseUrl + '/users/register', {
+      .post(baseUrl + '/users/login', {
         username: username,
         password: password
       })
       .then(function(res) {
-        console.log(res);
+        handleToken(res.data.token);
       })
       .catch(function(error) {
         console.log(error);
@@ -51,7 +50,7 @@ export const RegisterForm = () => {
         onChange={handlePassword}
       />
       <Button variant="contained" color="primary" type="submit">
-        Submit
+        Login
       </Button>
     </form>
   );
