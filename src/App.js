@@ -3,7 +3,7 @@ import Container from '@material-ui/core/Container';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { RegisterForm } from './components/Forms/RegisterForm';
 import { LoginForm } from './components/Forms/LoginForm';
-import { Overview } from './components/Overview/Overview';
+import { Overview } from './components/Dashboard/Overview/Overview';
 
 const App = () => {
   const [token, setToken] = useState('');
@@ -16,15 +16,14 @@ const App = () => {
     <Router>
       <Container maxWidth="sm">
         <Switch>
-          <Route exact path="/register">
-            <RegisterForm></RegisterForm>
-          </Route>
-          <Route exact path="/login">
-            <LoginForm handleToken={handleToken}></LoginForm>
-          </Route>
-          <Route exact path="/overview">
-            <Overview token={token}></Overview>
-          </Route>
+          <Route path="/register" render={() => <RegisterForm />} />
+
+          <Route
+            path="/login"
+            render={() => <LoginForm handleToken={handleToken} />}
+          />
+
+          <Route path="/overview" render={() => <Overview token={token} />} />
         </Switch>
       </Container>
     </Router>
