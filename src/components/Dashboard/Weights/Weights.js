@@ -19,7 +19,12 @@ export const Weights = ({ token }) => {
     console.log(weights);
   };
 
-  const editWeight = weight => {};
+  const editWeight = (id, weight) => {
+    setWeights(weights.map(weight => {
+      if(weight.id !== id) return weight
+      return {...weight, weight_value: weight}
+ }))
+  };
   function fetchWeights() {
     console.log(token);
     axios
