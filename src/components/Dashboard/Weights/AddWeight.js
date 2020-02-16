@@ -26,7 +26,8 @@ export const AddWeight = ({ token, addWeight }) => {
       .post(
         baseUrl + '/weights',
         {
-          weight: weightToAdd
+          weight: weightToAdd,
+          date: date
         },
         {
           headers: {
@@ -44,14 +45,14 @@ export const AddWeight = ({ token, addWeight }) => {
   };
 
   return (
-    <React.Fragment>
+    <div>
       <Calendar onChange={onChange} value={date}></Calendar>
       <form onSubmit={handleSubmit}>
         <TextField onChange={handleWeightToAdd} value={weightToAdd}></TextField>
-        <Button variant="contained" color="primary" type="submit">
-          Add weight
+        <Button variant="contained" color={cyan.A200} type="submit">
+          Save
         </Button>
       </form>
-    </React.Fragment>
+    </div>
   );
 };

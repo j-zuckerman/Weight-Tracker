@@ -1,30 +1,14 @@
 //Display all weights
 import React, { useState, useEffect } from 'react';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
+import Fab from '@material-ui/core/Fab';
 import axios from 'axios';
+import { Redirect } from 'react-router-dom';
 import { baseUrl } from '../../../api/baseURL';
-import { AddWeight } from './AddWeight';
 import { Weight } from './Weight';
 
-export const Weights = ({ token }) => {
-  const [weights, setWeights] = useState([]);
+export const Weights = ({ token, weights, setWeights }) => {
+  const [addWeight, setAddWeight] = useState(false);
 
-  const addWeight = weight => {
-    setWeights(weights.concat(weight));
-  };
-
-  const deleteWeight = id => {
-    setWeights(weights.filter(weight => weight.id !== id));
-    console.log(weights);
-  };
-
-  const editWeight = (id, weight) => {
-    setWeights(weights.map(weight => {
-      if(weight.id !== id) return weight
-      return {...weight, weight_value: weight}
- }))
-  };
   function fetchWeights() {
     console.log(token);
     axios
@@ -43,21 +27,30 @@ export const Weights = ({ token }) => {
       });
   }
 
+  const handleClick = () => {
+    setAddWeight(true);
+  };
+
   useEffect(() => {
     fetchWeights();
   }, []);
 
-  return (
-    <div>
-      {weights.map(weight => (
-        <Weight
-          weight={weight}
-          deleteWeight={deleteWeight}
-          editWeight={editWeight}
-          token={token}
-        />
-      ))}
-      <AddWeight token={token} addWeight={addWeight}></AddWeight>
-    </div>
-  );
+  if (addWeight) return <Redirect to="/weights/add"></Redirect>;
+  else
+    return (
+      <div>
+        {weights.map(weight => (
+          <Weight weight={weight} token={token} />
+        ))}
+        <Fab
+          onClick={handleClick}
+          variant="extended"
+          size="medium"
+          color="primary"
+          aria-label="add"
+        >
+          New Weight
+        </Fab>
+      </div>
+    );
 };

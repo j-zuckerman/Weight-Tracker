@@ -37,7 +37,7 @@ export const LoginForm = ({ handleToken }) => {
         console.log(error);
       });
   };
-  if (isLoggedIn) return <Redirect to="/overview" />;
+  if (isLoggedIn) return <Redirect to="/weights" />;
   else
     return (
       <form onSubmit={handleSubmit}>
