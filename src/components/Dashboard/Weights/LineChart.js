@@ -1,19 +1,13 @@
 import React from 'react';
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend
-} from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid } from 'recharts';
+import moment from 'moment';
 
 export const Chart = ({ weights }) => {
   let data = [];
 
   weights.forEach(weight => {
-    data.push({ weight: weight.weight_value, date: weight.date });
+    const date = moment(weight.date).format('MMM Do');
+    data.push({ weight: weight.weight_value, date });
   });
 
   console.log(data);
@@ -31,6 +25,7 @@ export const Chart = ({ weights }) => {
       }}
     >
       <CartesianGrid stroke="#ccc" />
+      <YAxis />
       <XAxis dataKey="date" />
 
       <Line type="monotone" dataKey="weight" stroke="#82ca9d" />
