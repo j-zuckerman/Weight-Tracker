@@ -5,6 +5,7 @@ import axios from 'axios';
 import { Redirect } from 'react-router-dom';
 import { baseUrl } from '../../../api/baseURL';
 import { Weight } from './Weight';
+import { Chart } from './LineChart';
 
 export const Weights = ({ token, weights, setWeights }) => {
   const [addWeight, setAddWeight] = useState(false);
@@ -39,6 +40,7 @@ export const Weights = ({ token, weights, setWeights }) => {
   else
     return (
       <div>
+        <Chart weights={weights} />
         {weights.map(weight => (
           <Weight weight={weight} token={token} />
         ))}

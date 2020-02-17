@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
+
 import axios from 'axios';
 import Calendar from 'react-calendar';
 import { baseUrl } from '../../../api/baseURL';
+import { StyledButton } from '../../Styled/Button';
+import { StyledCalendar } from '../../Styled/Calendar';
 
 export const AddWeight = ({ token, addWeight }) => {
   const [weightToAdd, setWeightToAdd] = useState(0);
@@ -48,10 +50,13 @@ export const AddWeight = ({ token, addWeight }) => {
     <div>
       <Calendar onChange={onChange} value={date}></Calendar>
       <form onSubmit={handleSubmit}>
-        <TextField onChange={handleWeightToAdd} value={weightToAdd}></TextField>
-        <Button variant="contained" color={cyan.A200} type="submit">
-          Save
-        </Button>
+        <TextField
+          InputProps={{ style: { color: 'white' } }}
+          onChange={handleWeightToAdd}
+          value={weightToAdd}
+        ></TextField>
+
+        <StyledButton type="submit"> Save</StyledButton>
       </form>
     </div>
   );
