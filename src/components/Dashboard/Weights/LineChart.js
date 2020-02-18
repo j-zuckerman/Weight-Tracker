@@ -1,5 +1,5 @@
 import React from 'react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid } from 'recharts';
+import { LineChart, Line, XAxis, YAxis } from 'recharts';
 import moment from 'moment';
 
 export const Chart = ({ weights }) => {
@@ -24,7 +24,7 @@ export const Chart = ({ weights }) => {
         bottom: 5
       }}
     >
-      <YAxis />
+      <YAxis type="number" domain={[100, 300]} />
       <XAxis dataKey="date" />
 
       <Line type="monotone" dataKey="weight" stroke="#0CCD98" />

@@ -15,9 +15,20 @@ export const Progress = ({ currentWeight, userDetails }) => {
     <div>
       <div>
         <ProgressDetails>
-          <h3>{userDetails.startWeight + ' lbs'} </h3>
-          <h2>{currentWeight + ' lbs'}</h2>
-          <h3> {userDetails.goalWeight + ' lbs'}</h3>
+          <div>
+            <p>Start Weight:</p>
+            <h3>{userDetails.startWeight + ' lbs'} </h3>
+          </div>
+
+          <div>
+            <p>Current Weight:</p>
+            <h2>{currentWeight + ' lbs'}</h2>
+          </div>
+
+          <div>
+            <p>Goal Weight: </p>
+            <h3> {userDetails.goalWeight + ' lbs'}</h3>
+          </div>
         </ProgressDetails>
         <ProgressBar
           width={

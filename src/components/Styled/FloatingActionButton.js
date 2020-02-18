@@ -1,6 +1,11 @@
 import styled from 'styled-components';
 import Fab from '@material-ui/core/Fab';
 
+export const FloatingActionButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
 export const StyledFloatingActionButton = styled(Fab)`
   background-color: #0ccd98;
   border-radius: 35px;

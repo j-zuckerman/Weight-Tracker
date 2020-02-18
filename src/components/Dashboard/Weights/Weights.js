@@ -7,7 +7,10 @@ import { baseUrl } from '../../../api/baseURL';
 import { Weight } from './Weight';
 import { Chart } from './LineChart';
 import { Progress } from './Progress';
-import { StyledFloatingActionButton } from '../../Styled/FloatingActionButton';
+import {
+  StyledFloatingActionButton,
+  FloatingActionButtonContainer
+} from '../../Styled/FloatingActionButton';
 
 export const Weights = ({ token, weights, setWeights, userDetails }) => {
   const [addWeight, setAddWeight] = useState(false);
@@ -44,7 +47,7 @@ export const Weights = ({ token, weights, setWeights, userDetails }) => {
   else
     return (
       <div>
-        <Chart weights={weights} />
+        <Chart weights={weights} currentWeight={currentWeight} />
 
         <Progress userDetails={userDetails} currentWeight={currentWeight} />
 
@@ -54,15 +57,17 @@ export const Weights = ({ token, weights, setWeights, userDetails }) => {
           ))}
         </List>
 
-        <StyledFloatingActionButton
-          onClick={handleClick}
-          variant="extended"
-          size="medium"
-          color="primary"
-          aria-label="add"
-        >
-          New Weight
-        </StyledFloatingActionButton>
+        <FloatingActionButtonContainer>
+          <StyledFloatingActionButton
+            onClick={handleClick}
+            variant="extended"
+            size="medium"
+            color="primary"
+            aria-label="add"
+          >
+            New Weight
+          </StyledFloatingActionButton>
+        </FloatingActionButtonContainer>
       </div>
     );
 };

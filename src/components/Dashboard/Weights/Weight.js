@@ -63,7 +63,7 @@ export const Weight = ({ token, deleteWeight, editWeight, weight }) => {
     <React.Fragment>
       <ListItem>
         <ListItemText
-          primary={weight.weight_value}
+          primary={weight.weight_value + ' lbs'}
           secondary={moment(weight.date).format('MMM Do')}
         />
       </ListItem>
