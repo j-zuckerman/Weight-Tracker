@@ -6,9 +6,11 @@ import { Redirect } from 'react-router-dom';
 import { baseUrl } from '../../../api/baseURL';
 import { Weight } from './Weight';
 import { Chart } from './LineChart';
+import { Progress } from './Progress';
 
-export const Weights = ({ token, weights, setWeights }) => {
+export const Weights = ({ token, weights, setWeights, userDetails }) => {
   const [addWeight, setAddWeight] = useState(false);
+  const [currentWeight, setCurrentWeight] = useState(0);
 
   function fetchWeights() {
     console.log(token);
@@ -21,7 +23,8 @@ export const Weights = ({ token, weights, setWeights }) => {
       .then(function(res) {
         console.log(res);
         setWeights(weights.concat(res.data));
-        console.log(weights);
+        console.log(res.data[res.data.length - 1].weight_value);
+        setCurrentWeight(res.data[res.data.length - 1].weight_value);
       })
       .catch(function(error) {
         console.log(error);
@@ -35,13 +38,14 @@ export const Weights = ({ token, weights, setWeights }) => {
   useEffect(() => {
     fetchWeights();
   }, []);
-
+  console.log(weights);
   if (addWeight) return <Redirect to="/weights/add"></Redirect>;
   else
     return (
       <div>
         <Chart weights={weights} />
-        {weights.map(weight => (
+        <Progress userDetails={userDetails} currentWeight={currentWeight} />
+        {weights.reverse().map(weight => (
           <Weight weight={weight} token={token} />
         ))}
         <Fab

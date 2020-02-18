@@ -9,6 +9,7 @@ import { AddWeight } from './components/Dashboard/Weights/AddWeight';
 const App = () => {
   const [token, setToken] = useState('');
   const [weights, setWeights] = useState([]);
+  const [userDetails, setUserDetails] = useState({});
 
   const addWeight = weight => {
     setWeights(weights.concat(weight));
@@ -40,7 +41,12 @@ const App = () => {
 
           <Route
             path="/login"
-            render={() => <LoginForm handleToken={handleToken} />}
+            render={() => (
+              <LoginForm
+                setUserDetails={setUserDetails}
+                handleToken={handleToken}
+              />
+            )}
           />
 
           <Route
@@ -48,6 +54,7 @@ const App = () => {
             path="/weights"
             render={() => (
               <Weights
+                userDetails={userDetails}
                 weights={weights}
                 token={token}
                 setWeights={setWeights}

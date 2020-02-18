@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 import { Redirect } from 'react-router-dom';
 import { baseUrl } from '../../api/baseURL';
 
-export const LoginForm = ({ handleToken }) => {
+export const LoginForm = ({ handleToken, setUserDetails }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -26,8 +26,9 @@ export const LoginForm = ({ handleToken }) => {
         password: password
       })
       .then(function(res) {
+        console.log(res.data);
         handleToken(res.data.token);
-
+        setUserDetails(res.data);
         setUsername('');
         setPassword('');
 

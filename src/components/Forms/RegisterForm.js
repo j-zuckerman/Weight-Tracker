@@ -8,6 +8,8 @@ import { baseUrl } from '../../api/baseURL';
 export const RegisterForm = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [goalWeight, setGoalWeight] = useState('');
+  const [startWeight, setStartWeight] = useState('');
   const [isRegistered, setIsRegistered] = useState(false);
 
   const handleUsername = e => {
@@ -16,6 +18,12 @@ export const RegisterForm = () => {
   const handlePassword = e => {
     setPassword(e.target.value);
   };
+  const handleStartWeight = e => {
+    setStartWeight(e.target.value);
+  };
+  const handleGoalWeight = e => {
+    setGoalWeight(e.target.value);
+  };
   const handleSubmit = async e => {
     e.preventDefault();
 
@@ -23,14 +31,17 @@ export const RegisterForm = () => {
     axios
       .post(baseUrl + '/users/register', {
         username: username,
-        password: password
+        password: password,
+        goalWeight: goalWeight,
+        startWeight: startWeight
       })
       .then(function(res) {
         console.log(res);
 
         setUsername('');
         setPassword('');
-
+        setGoalWeight('');
+        setStartWeight('');
         setIsRegistered(true);
       })
       .catch(function(error) {
@@ -55,6 +66,20 @@ export const RegisterForm = () => {
           placeholder="Password"
           value={password}
           onChange={handlePassword}
+          fullWidth
+        />
+
+        <TextField
+          placeholder="Start Weight"
+          value={startWeight}
+          onChange={handleStartWeight}
+          fullWidth
+        />
+
+        <TextField
+          placeholder="Goal Weight"
+          value={goalWeight}
+          onChange={handleGoalWeight}
           fullWidth
         />
 
