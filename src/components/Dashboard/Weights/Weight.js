@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
-import TextField from '@material-ui/core/TextField';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import Divider from '@material-ui/core/Divider';
 import axios from 'axios';
 import { baseUrl } from '../../../api/baseURL';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
+import moment from 'moment';
+import { WeightContainer } from '../../Styled/WeightContainer';
 
 export const Weight = ({ token, deleteWeight, editWeight, weight }) => {
   const [weightValue, setWeightValue] = useState(weight.weight_value);
@@ -56,16 +60,14 @@ export const Weight = ({ token, deleteWeight, editWeight, weight }) => {
   };
 
   return (
-    <div>
-      <TextField
-        id="username"
-        placeholder="Username"
-        value={weightValue}
-        onChange={handleWeightValue}
-      />
-
-      <DeleteIcon onClick={() => handleDelete(weight.id)} />
-      <EditIcon onClick={() => handleEdit(weight.id)} />
-    </div>
+    <React.Fragment>
+      <ListItem>
+        <ListItemText
+          primary={weight.weight_value}
+          secondary={moment(weight.date).format('MMM Do')}
+        />
+      </ListItem>
+      <Divider />
+    </React.Fragment>
   );
 };

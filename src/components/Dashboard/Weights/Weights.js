@@ -1,12 +1,13 @@
 //Display all weights
 import React, { useState, useEffect } from 'react';
-import Fab from '@material-ui/core/Fab';
+import List from '@material-ui/core/List';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
 import { baseUrl } from '../../../api/baseURL';
 import { Weight } from './Weight';
 import { Chart } from './LineChart';
 import { Progress } from './Progress';
+import { StyledFloatingActionButton } from '../../Styled/FloatingActionButton';
 
 export const Weights = ({ token, weights, setWeights, userDetails }) => {
   const [addWeight, setAddWeight] = useState(false);
@@ -23,7 +24,7 @@ export const Weights = ({ token, weights, setWeights, userDetails }) => {
       .then(function(res) {
         console.log(res);
         setWeights(weights.concat(res.data));
-        console.log(res.data[res.data.length - 1].weight_value);
+
         setCurrentWeight(res.data[res.data.length - 1].weight_value);
       })
       .catch(function(error) {
@@ -38,17 +39,22 @@ export const Weights = ({ token, weights, setWeights, userDetails }) => {
   useEffect(() => {
     fetchWeights();
   }, []);
-  console.log(weights);
+
   if (addWeight) return <Redirect to="/weights/add"></Redirect>;
   else
     return (
       <div>
         <Chart weights={weights} />
+
         <Progress userDetails={userDetails} currentWeight={currentWeight} />
-        {weights.reverse().map(weight => (
-          <Weight weight={weight} token={token} />
-        ))}
-        <Fab
+
+        <List>
+          {weights.reverse().map(weight => (
+            <Weight weight={weight} token={token} />
+          ))}
+        </List>
+
+        <StyledFloatingActionButton
           onClick={handleClick}
           variant="extended"
           size="medium"
@@ -56,7 +62,7 @@ export const Weights = ({ token, weights, setWeights, userDetails }) => {
           aria-label="add"
         >
           New Weight
-        </Fab>
+        </StyledFloatingActionButton>
       </div>
     );
 };

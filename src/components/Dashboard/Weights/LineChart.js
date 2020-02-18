@@ -24,11 +24,10 @@ export const Chart = ({ weights }) => {
         bottom: 5
       }}
     >
-      <CartesianGrid stroke="#ccc" />
       <YAxis />
       <XAxis dataKey="date" />
 
-      <Line type="monotone" dataKey="weight" stroke="#82ca9d" />
+      <Line type="monotone" dataKey="weight" stroke="#0CCD98" />
     </LineChart>
   );
 };

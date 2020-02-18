@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ProgressBar } from '../../Styled/ProgressBar';
+import { ProgressDetails } from '../../Styled/ProgressDetails';
 
 export const Progress = ({ currentWeight, userDetails }) => {
   function calculatePercentageOfWeightLoss() {
@@ -13,6 +14,11 @@ export const Progress = ({ currentWeight, userDetails }) => {
   return (
     <div>
       <div>
+        <ProgressDetails>
+          <h3>{userDetails.startWeight + ' lbs'} </h3>
+          <h2>{currentWeight + ' lbs'}</h2>
+          <h3> {userDetails.goalWeight + ' lbs'}</h3>
+        </ProgressDetails>
         <ProgressBar
           width={
             '' +
@@ -23,9 +29,6 @@ export const Progress = ({ currentWeight, userDetails }) => {
           }
         />
       </div>
-      {currentWeight}
-      {userDetails.username} -- {userDetails.startWeight} --{' '}
-      {userDetails.goalWeight}
     </div>
   );
 };

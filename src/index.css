@@ -1,26 +1,14 @@
 body {
   margin: 0;
+  color: #444444;
+}
 
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.light-gray {
+  color: #d3d3d3;
 }
 
 .react-calendar {
-  background: #212121 !important;
   padding: 10px 20px;
-  color: white !important;
-
-  border: none !important;
-
   border-radius: 3px !important;
-}
-.react-calendar__tile {
-  color: white !important;
-}
-
-.react-calendar__month-view {
-  text-align: center;
-  text-transform: uppercase;
-  color: white;
-  font-size: 1em;
+  width: 100%;
 }
