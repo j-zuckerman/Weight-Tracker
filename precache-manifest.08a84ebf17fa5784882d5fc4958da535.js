@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "8a1448b78934dbccaef2e46bf0cd914e",
+    "revision": "95ec7b49b491cc0d15a1d0630dc33a10",
     "url": "/Weight-Tracker/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Weight-Tracker/static/css/2.c51b6406.chunk.css"
   },
   {
-    "revision": "0516cf22b94d14641cc7",
+    "revision": "b135c260d22a25d95618",
     "url": "/Weight-Tracker/static/css/main.00a837a8.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Weight-Tracker/static/js/2.ebe08ad6.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "0516cf22b94d14641cc7",
-    "url": "/Weight-Tracker/static/js/main.ae1794f4.chunk.js"
+    "revision": "b135c260d22a25d95618",
+    "url": "/Weight-Tracker/static/js/main.3a5f2c1f.chunk.js"
   },
   {
     "revision": "ba5412b9ce6e7ec48777",
