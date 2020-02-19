@@ -1,0 +1,1 @@
+{"version":3,"sources":["index.css"],"names":[],"mappings":"AAAA,KACE,QAAS,CACT,UACF,CAEA,YACE,aACF,CAEA,gBACE,iBAAkB,CAClB,2BAA6B,CAC7B,UACF","file":"main.00a837a8.chunk.css","sourcesContent":["body {\n  margin: 0;\n  color: #444444;\n}\n\n.light-gray {\n  color: #d3d3d3;\n}\n\n.react-calendar {\n  padding: 10px 20px;\n  border-radius: 3px !important;\n  width: 100%;\n}\n"]}
