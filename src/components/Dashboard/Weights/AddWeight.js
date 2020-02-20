@@ -5,7 +5,6 @@ import axios from 'axios';
 import Calendar from 'react-calendar';
 import { baseUrl } from '../../../api/baseURL';
 import { StyledButton } from '../../Styled/Button';
-import { StyledCalendar } from '../../Styled/Calendar';
 
 export const AddWeight = ({ token, addWeight }) => {
   const [weightToAdd, setWeightToAdd] = useState(0);

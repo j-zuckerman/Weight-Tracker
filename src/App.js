@@ -8,26 +8,7 @@ import { AddWeight } from './components/Dashboard/Weights/AddWeight';
 
 const App = () => {
   const [token, setToken] = useState('');
-  const [weights, setWeights] = useState([]);
   const [userDetails, setUserDetails] = useState({});
-
-  const addWeight = weight => {
-    setWeights(weights.concat(weight));
-  };
-
-  const deleteWeight = id => {
-    setWeights(weights.filter(weight => weight.id !== id));
-    console.log(weights);
-  };
-
-  const editWeight = (id, weight) => {
-    setWeights(
-      weights.map(weight => {
-        if (weight.id !== id) return weight;
-        return { ...weight, weight_value: weight };
-      })
-    );
-  };
 
   const handleToken = tokenRecieved => {
     setToken(tokenRecieved);
@@ -52,25 +33,7 @@ const App = () => {
           <Route
             exact
             path="/weights"
-            render={() => (
-              <Weights
-                userDetails={userDetails}
-                weights={weights}
-                token={token}
-                setWeights={setWeights}
-              />
-            )}
-          />
-          <Route
-            exact
-            path="/weights/add"
-            render={() => (
-              <AddWeight
-                weights={weights}
-                token={token}
-                addWeight={addWeight}
-              />
-            )}
+            render={() => <Weights userDetails={userDetails} token={token} />}
           />
         </Switch>
       </Container>
