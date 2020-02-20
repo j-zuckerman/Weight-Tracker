@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import TextField from '@material-ui/core/TextField';
-
 import axios from 'axios';
 import Calendar from 'react-calendar';
 import { baseUrl } from '../../../api/baseURL';
-import { StyledButton } from '../../Styled/Button';
+import {
+  FloatingActionButtonContainer,
+  StyledFloatingActionButton
+} from '../../Styled/FloatingActionButton';
 
 export const AddWeight = ({ token, addWeight }) => {
   const [weightToAdd, setWeightToAdd] = useState(0);
@@ -22,7 +24,6 @@ export const AddWeight = ({ token, addWeight }) => {
   const handleSubmit = async e => {
     e.preventDefault();
 
-    //Call to API register endpoint
     axios
       .post(
         baseUrl + '/weights',
@@ -49,13 +50,18 @@ export const AddWeight = ({ token, addWeight }) => {
     <div>
       <Calendar onChange={onChange} value={date}></Calendar>
       <form onSubmit={handleSubmit}>
-        <TextField
-          InputProps={{ style: { color: 'white' } }}
-          onChange={handleWeightToAdd}
-          value={weightToAdd}
-        ></TextField>
+        <TextField onChange={handleWeightToAdd} value={weightToAdd}></TextField>
 
-        <StyledButton type="submit"> Save</StyledButton>
+        <FloatingActionButtonContainer>
+          <StyledFloatingActionButton
+            variant="extended"
+            size="medium"
+            color="primary"
+            type="submit"
+          >
+            Save Weight
+          </StyledFloatingActionButton>
+        </FloatingActionButtonContainer>
       </form>
     </div>
   );
