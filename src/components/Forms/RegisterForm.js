@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import { baseUrl } from '../../api/baseURL';
 
 export const RegisterForm = () => {
@@ -36,12 +36,11 @@ export const RegisterForm = () => {
         startWeight: startWeight
       })
       .then(function(res) {
-        console.log(res);
-
         setUsername('');
         setPassword('');
         setGoalWeight('');
         setStartWeight('');
+
         setIsRegistered(true);
       })
       .catch(function(error) {
@@ -52,40 +51,46 @@ export const RegisterForm = () => {
   if (isRegistered) return <Redirect to="/login" />;
   else
     return (
-      <form onSubmit={handleSubmit}>
-        <TextField
-          id="username"
-          placeholder="Username"
-          value={username}
-          onChange={handleUsername}
-          fullWidth
-        />
-        <TextField
-          type="password"
-          id="password"
-          placeholder="Password"
-          value={password}
-          onChange={handlePassword}
-          fullWidth
-        />
+      <>
+        <h1>Create Account</h1>
 
-        <TextField
-          placeholder="Start Weight"
-          value={startWeight}
-          onChange={handleStartWeight}
-          fullWidth
-        />
+        <form onSubmit={handleSubmit}>
+          <TextField
+            id="username"
+            placeholder="Username"
+            value={username}
+            onChange={handleUsername}
+            fullWidth
+          />
+          <TextField
+            type="password"
+            id="password"
+            placeholder="Password"
+            value={password}
+            onChange={handlePassword}
+            fullWidth
+          />
 
-        <TextField
-          placeholder="Goal Weight"
-          value={goalWeight}
-          onChange={handleGoalWeight}
-          fullWidth
-        />
+          <TextField
+            placeholder="Start Weight"
+            value={startWeight}
+            onChange={handleStartWeight}
+            fullWidth
+          />
 
-        <Button variant="contained" color="primary" type="submit">
-          Register
-        </Button>
-      </form>
+          <TextField
+            placeholder="Goal Weight"
+            value={goalWeight}
+            onChange={handleGoalWeight}
+            fullWidth
+          />
+
+          <Button variant="contained" color="primary" type="submit" m={5}>
+            Register
+          </Button>
+
+          <Link to="/login">Already have an account? Login here</Link>
+        </form>
+      </>
     );
 };

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import { baseUrl } from '../../api/baseURL';
 
 export const LoginForm = ({ handleToken, setUserDetails }) => {
@@ -19,15 +19,14 @@ export const LoginForm = ({ handleToken, setUserDetails }) => {
   const handleSubmit = async e => {
     e.preventDefault();
 
-    //Call to API register endpoint
     axios
       .post(baseUrl + '/users/login', {
         username: username,
         password: password
       })
       .then(function(res) {
-        console.log(res.data);
         handleToken(res.data.token);
+
         setUserDetails(res.data);
         setUsername('');
         setPassword('');
@@ -41,25 +40,29 @@ export const LoginForm = ({ handleToken, setUserDetails }) => {
   if (isLoggedIn) return <Redirect to="/weights" />;
   else
     return (
-      <form onSubmit={handleSubmit}>
-        <TextField
-          id="username"
-          placeholder="Username"
-          value={username}
-          onChange={handleUsername}
-          fullWidth
-        />
-        <TextField
-          type="password"
-          id="password"
-          placeholder="Password"
-          value={password}
-          onChange={handlePassword}
-          fullWidth
-        />
-        <Button variant="contained" color="primary" type="submit">
-          Login
-        </Button>
-      </form>
+      <>
+        <h1>Login</h1>
+        <form onSubmit={handleSubmit}>
+          <TextField
+            id="username"
+            placeholder="Username"
+            value={username}
+            onChange={handleUsername}
+            fullWidth
+          />
+          <TextField
+            type="password"
+            id="password"
+            placeholder="Password"
+            value={password}
+            onChange={handlePassword}
+            fullWidth
+          />
+          <Button variant="contained" color="primary" type="submit">
+            Login
+          </Button>
+          <Link to="/register">Need to register an account? Register here</Link>
+        </form>
+      </>
     );
 };

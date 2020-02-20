@@ -34,7 +34,7 @@ const App = () => {
   };
 
   return (
-    <Router>
+    <Router basename="/Weight-Tracker/">
       <Container maxWidth="sm">
         <Switch>
           <Route path="/register" render={() => <RegisterForm />} />
